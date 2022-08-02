@@ -6,6 +6,8 @@ import java.util.Map;
 
 public class Functions {
 
+    static Logger l = Logger.STATIC_LOGGER;
+
     private Functions() {
     }
 
@@ -23,4 +25,5 @@ public class Functions {
             System.out.println(entry.getKey() + " = " + entry.getValue());
         }
     }
+
 }
