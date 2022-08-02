@@ -1,5 +1,6 @@
 package art.psyson;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Book {
@@ -8,6 +9,35 @@ public class Book {
     List<String> description;
     List<String> content;
     String bookCode;
+
+    public String author() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public List<String> description() {
+        return description;
+    }
+
+
+    public List<String> content() {
+        return content;
+    }
+
+
+    public String bookCode() {
+        return bookCode;
+    }
+
+    public Book() {
+        this.content = new ArrayList<>();
+        this.description = new ArrayList<>();
+        bookCode = "";
+    }
+
 
 
 }

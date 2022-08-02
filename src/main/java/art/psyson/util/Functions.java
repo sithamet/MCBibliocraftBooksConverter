@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class Functions {
 
-    static Logger l = Logger.STATIC_LOGGER;
+    static Logger l = new Logger(new Functions());
 
     private Functions() {
     }

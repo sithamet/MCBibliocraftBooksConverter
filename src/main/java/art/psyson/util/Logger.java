@@ -1,6 +1,8 @@
 package art.psyson.util;
 
+import java.text.SimpleDateFormat;
 import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.Set;
 
@@ -22,18 +24,24 @@ public class Logger {
 
     public void log(String message, Object... variables) {
 
-        if (LOG_MAP.contains(loggingObject.getClass().getName()) && ENABLED) {
+        if (!LOG_MAP.contains(loggingObject.getClass().getName()) && ENABLED) {
+
+            Date date = Date.from(Instant.now());
+            String pattern = "dd-MM-yyyy HH:mm:ss";
+            String time = new SimpleDateFormat(pattern).format(date);
+
+            String className = loggingObject.getClass().getSimpleName();
 
             if (variables.length > 0) {
 
                 System.out.printf("[LOG] "
-                        + "(" + loggingObject.toString()
-                        + " at " + Date.from(Instant.now()) + ") — "
+                        + "(" + className
+                        + " at " + time + ") — "
                         + message + "\n", variables);
             } else {
                 System.out.println("[LOG] "
-                        + "(" + loggingObject.toString()
-                        + " at " + Date.from(Instant.now()) + ") — "
+                        + "(" + className
+                        + " at " + time + ") — "
                         + message);
             }
         }

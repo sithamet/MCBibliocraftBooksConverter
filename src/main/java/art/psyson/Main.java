@@ -7,6 +7,9 @@ import net.lingala.zip4j.ZipFile;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.util.Date;
 import java.util.Set;
 
 
@@ -23,12 +26,18 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 
+        Date date = Date.from(Instant.now());
+        String pattern = "dd-MM-yyyy HH.mm.ss";
+        String time = new SimpleDateFormat(pattern).format(date);
+
+        Session session = new Session(time);
+
     Set<String> inputFiles = FileTool.listFilesInDirectory(INPUT);
 
-    for (String s : inputFiles) {
-
-        new ZipFile(INPUT + SEP + s).extractAll(TEMP);
-    }
+//    for (String s : inputFiles) {
+//
+//        new ZipFile(INPUT + SEP + s).extractAll(TEMP);
+//    }
 
 
 

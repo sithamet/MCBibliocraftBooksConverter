@@ -3,7 +3,10 @@ package art.psyson.util;
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -11,7 +14,10 @@ import java.util.stream.Stream;
 
 public class FileTool {
 
-    static Logger l = Logger.STATIC_LOGGER;
+    static Logger l = new Logger(new FileTool());
+
+    private FileTool(){}
+
     public static void logFile(File file) throws RuntimeException {
         l.log("File name: " + file.getName());
         l.log("File path: " + file.getPath());
@@ -28,7 +34,7 @@ public class FileTool {
     }
 
     public static void createNewFile(File file) {
-        logFile(file);
+//        logFile(file);
 
         File parentDir = file.getParentFile();
 
@@ -54,7 +60,19 @@ public class FileTool {
         createNewFile(file);
     }
 
+    public static void createNewFile(Path path) {
+        File file = path.toFile();
+        createNewFile(file);
+    }
+
+
+
     public static Set<String> listFilesInDirectory(String directoryPath) {
+        if(new File(directoryPath).listFiles() == null)  {
+            l.log("Directory %s is empty", directoryPath);
+            return new HashSet<>();
+        }
+
         return Stream.of(new File(directoryPath).listFiles())
                 .filter(file -> !file.isDirectory())
                 .map(File::getName)

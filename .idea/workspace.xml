@@ -4,13 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="de6bd2cf-0425-4703-bd68-d0551a3f026e" name="Changes" comment="Concept created, development started">
-      <change afterPath="$PROJECT_DIR$/src/main/java/art/psyson/BookBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/art/psyson/Session.java" afterDir="false" />
+    <list default="true" id="de6bd2cf-0425-4703-bd68-d0551a3f026e" name="Changes" comment="Structure update">
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/art/psyson/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/art/psyson/Book.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/art/psyson/BookBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/art/psyson/BookBuilder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/art/psyson/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/art/psyson/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/art/psyson/Session.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/art/psyson/Session.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/art/psyson/util/FileTool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/art/psyson/util/FileTool.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/art/psyson/util/Functions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/art/psyson/util/Functions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/art/psyson/util/Logger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/art/psyson/util/Logger.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -138,7 +141,14 @@
       <option name="project" value="LOCAL" />
       <updated>1659460770996</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Structure update">
+      <created>1659465381520</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1659465381520</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -155,6 +165,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="First commit" />
     <MESSAGE value="Concept created, development started" />
-    <option name="LAST_COMMIT_MESSAGE" value="Concept created, development started" />
+    <MESSAGE value="Structure update" />
+    <option name="LAST_COMMIT_MESSAGE" value="Structure update" />
   </component>
 </project>
