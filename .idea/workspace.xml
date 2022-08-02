@@ -4,16 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="de6bd2cf-0425-4703-bd68-d0551a3f026e" name="Changes" comment="First commit">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/art/psyson/Book.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/art/psyson/util/FileTool.java" afterDir="false" />
+    <list default="true" id="de6bd2cf-0425-4703-bd68-d0551a3f026e" name="Changes" comment="Concept created, development started">
+      <change afterPath="$PROJECT_DIR$/src/main/java/art/psyson/BookBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/art/psyson/Session.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/art/psyson/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/art/psyson/Book.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/art/psyson/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/art/psyson/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/art/psyson/util/Functions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/art/psyson/util/Functions.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -134,7 +131,14 @@
       <option name="project" value="LOCAL" />
       <updated>1659354126327</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Concept created, development started">
+      <created>1659460770996</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1659460770996</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -150,6 +154,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="First commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="First commit" />
+    <MESSAGE value="Concept created, development started" />
+    <option name="LAST_COMMIT_MESSAGE" value="Concept created, development started" />
   </component>
 </project>

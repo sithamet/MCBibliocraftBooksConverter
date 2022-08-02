@@ -17,17 +17,16 @@ public class Main {
 
     static Logger l = Logger.STATIC_LOGGER;
     public static String SEP = File.separator;
-
     public static final String INPUT = "." + SEP + "INPUT";
     public static final String TEMP = "." + SEP + "TEMP";
     public static final String OUTPUT = "." + SEP + "OUTPUT";
-
 
     public static void main(String[] args) throws IOException {
 
     Set<String> inputFiles = FileTool.listFilesInDirectory(INPUT);
 
     for (String s : inputFiles) {
+
         new ZipFile(INPUT + SEP + s).extractAll(TEMP);
     }
 
