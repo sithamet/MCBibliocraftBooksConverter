@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="de6bd2cf-0425-4703-bd68-d0551a3f026e" name="Changes" comment="Structure update">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="de6bd2cf-0425-4703-bd68-d0551a3f026e" name="Changes" comment="* Abstract class &amp; method structure is ready&#10;* Session creation done">
+      <change afterPath="$PROJECT_DIR$/src/main/java/art/psyson/util/CODES.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/art/psyson/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/art/psyson/Book.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/art/psyson/BookBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/art/psyson/BookBuilder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/art/psyson/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/art/psyson/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/art/psyson/Session.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/art/psyson/Session.java" afterDir="false" />
@@ -44,32 +43,35 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;true&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;true&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;true&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/vlasi/OneDrive/Documents/GitHub/BooksConverter/INPUT&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15007898&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Downloaded.Files.Path.Enabled": "true",
+    "Repository.Attach.Annotations": "true",
+    "Repository.Attach.JavaDocs": "true",
+    "Repository.Attach.Sources": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "last.edited.regexp": "{\n  x:77,\n  y:4,\n  id:\"minecraft:chest\",\n  z:-132,\n  Lock:\"\",\n  ForgeCaps:{\n    \"misca:lock\": {\n      secret:0,locked:0b,type:0b\n    },\n    \"misca:supplies\":{\n      Last:0L,Price:1,MaxSeq:0,Batches:[],Int:1L}\n  },\n  Items:[\n  ]\n  }",
+    "last_opened_file_path": "C:/Users/vlasi/OneDrive/Documents/GitHub/BooksConverter/INPUT",
+    "project.structure.last.edited": "SDKs",
+    "project.structure.proportion": "0.15007898",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "Console"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
-      &quot;JSON&quot;
+  "keyToStringList": {
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "JSON"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\vlasi\OneDrive\Documents\GitHub\BooksConverter\INPUT" />
       <recent name="C:\Users\vlasi\OneDrive\Documents\GitHub\BooksConverter\src\main\java\art\psyson" />
     </key>
     <key name="MoveMembersDialog.RECENTS_KEY">
+      <recent name="art.psyson.util.Functions" />
       <recent name="art.psyson.util.Filer" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -113,8 +115,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.Tests in 'BooksConverter.test'" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="Gradle.Tests in 'BooksConverter.test'" />
       </list>
     </recent_temporary>
   </component>
@@ -148,7 +150,14 @@
       <option name="project" value="LOCAL" />
       <updated>1659465381520</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="* Abstract class &amp; method structure is ready&#10;* Session creation done">
+      <created>1659468191687</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1659468191687</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -166,6 +175,7 @@
     <MESSAGE value="First commit" />
     <MESSAGE value="Concept created, development started" />
     <MESSAGE value="Structure update" />
-    <option name="LAST_COMMIT_MESSAGE" value="Structure update" />
+    <MESSAGE value="* Abstract class &amp; method structure is ready&#10;* Session creation done" />
+    <option name="LAST_COMMIT_MESSAGE" value="* Abstract class &amp; method structure is ready&#10;* Session creation done" />
   </component>
 </project>

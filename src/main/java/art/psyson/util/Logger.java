@@ -7,14 +7,9 @@ import java.util.Date;
 import java.util.Set;
 
 public class Logger {
-
     boolean ENABLED = true;
     Object loggingObject;
-    public static final Logger STATIC_LOGGER;
-
-    static {
-        STATIC_LOGGER = new Logger(new Object()); //todo create static logger subclass that accepts static class name string as an argument
-    }
+    public static final Logger STATIC_LOGGER = new Logger(new Object()); //todo create static logger subclass that accepts static class name string as an argument
 
 
     public static Set<String> LOG_MAP = Set.of("advisor.command.Action", "advisor.command.Command", "advisor.command.Command$Builder",
@@ -36,12 +31,12 @@ public class Logger {
 
                 System.out.printf("[LOG] "
                         + "(" + className
-                        + " at " + time + ") — "
+                        + " at " + time + ") - "
                         + message + "\n", variables);
             } else {
                 System.out.println("[LOG] "
                         + "(" + className
-                        + " at " + time + ") — "
+                        + " at " + time + ") - "
                         + message);
             }
         }
@@ -49,6 +44,8 @@ public class Logger {
 
     public Logger(Object loggingObject) {
         this.loggingObject = loggingObject;
+//        STATIC_LOGGER.log("Logger created for " + loggingObject.getClass().getSimpleName());
+
 
 //        System.out.println(loggingObject.getClass().getName());
 //        this.log("Logger attached. uwu");

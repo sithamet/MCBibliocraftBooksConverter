@@ -1,12 +1,20 @@
 package art.psyson;
 
+import art.psyson.util.Logger;
+
 public class BookBuilder {
-    Book book;
+
     Session session;
 
-    public BookBuilder(Book book, Session session) {
-        this.book = book;
+    Logger l;
+
+    public BookBuilder(Session session) {
+        l = new Logger(this);
         this.session = session;
+    }
+
+    public void buildBooks() {
+
     }
 
 

@@ -19,6 +19,7 @@ public class FileTool {
     private FileTool(){}
 
     public static void logFile(File file) throws RuntimeException {
+        l.log("Logging File properties...");
         l.log("File name: " + file.getName());
         l.log("File path: " + file.getPath());
         l.log("File full path: " + file.getAbsolutePath());
@@ -31,6 +32,13 @@ public class FileTool {
         l.log("Is file: " + file.isFile());
         l.log("Is directory: " + file.isDirectory());
         l.log("Exists: " + file.exists());
+        if (file.exists()) {
+            try {
+                l.log("Exists: " + Files.size(file.toPath()));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        };
     }
 
     public static void createNewFile(File file) {

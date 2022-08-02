@@ -1,8 +1,11 @@
 package art.psyson.util;
 
+import art.psyson.Main;
+
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
 
 public class Functions {
 
@@ -26,4 +29,10 @@ public class Functions {
         }
     }
 
+    public static void logSet(Set<String> set) {
+        l.log("Set includes...");
+        for (String s : set) {
+            l.log(s);
+        }
+    }
 }

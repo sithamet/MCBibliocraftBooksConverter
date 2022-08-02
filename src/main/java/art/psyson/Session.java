@@ -30,12 +30,12 @@ public class Session {
         return files;
     }
 
-    String sessionTimeStamp;
-    Path tempSessionPath;
-    List<Book> books;
-    List<File> files;
+    private String sessionTimeStamp;
+    private Path tempSessionPath;
+    private List<Book> books;
+    private List<File> files;
 
-    Logger l;
+    private  Logger l;
 
 
     public String getChestCode() {
