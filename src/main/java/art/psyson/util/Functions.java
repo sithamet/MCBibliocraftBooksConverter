@@ -14,6 +14,7 @@ public class Functions {
     private Functions() {
     }
 
+
     public static String formatAsHeader(String header) {
         return "---" + header.toUpperCase(Locale.ROOT) + "---";
 

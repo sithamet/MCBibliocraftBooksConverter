@@ -1,14 +1,18 @@
 package art.psyson;
 
+import art.psyson.util.FileTool;
+import art.psyson.util.Functions;
 import art.psyson.util.Logger;
+import com.google.common.base.Utf8;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Path;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static art.psyson.Main.SEP;
 import static art.psyson.util.CODES.RED;
 import static art.psyson.util.CODES.RESET;
 
@@ -81,11 +85,15 @@ public class BookBuilder {
         for (int k = i + 5; k < section.size(); k++) {
             String s = section.get(k);
             if (s.startsWith("&")) {
-//                if (s.toCharArray().length > 61) { //todo broken char calc
-//                    l.log(RED + "Error! " + RESET + "Description is longer than allowed 61 char, length ="
-//                            + s.toCharArray().length + "\n Descr: " + RED + s + RESET);
-//                    break;
-//                }
+
+                byte[] bytes = s.getBytes();
+                int length = new String(bytes, StandardCharsets.UTF_8).length();
+
+                if (length > 61) {
+                    l.log(RED + "Error! " + RESET + "Description is longer than allowed 61 char, length = "
+                            + length + "\n Descr: " + RED + s + RESET);
+                    break;
+                }
 
                 book.description().add(s);
                 l.log("Line added to description: " + s);
@@ -120,11 +128,17 @@ public class BookBuilder {
 
             String luaLine = section.get(i + 4);
             String contentLine = section.get(i + 5);
-//            if (contentLine.toCharArray().length > 35) { //todo broken char calculation
-//                l.log(RED + "Error! " + RESET + "Title is longer than allowed 35 char, length ="
-//                        + contentLine.toCharArray().length + "\n Title: " + RED + contentLine + RESET );
-//                return false;
-//            }
+
+            byte[] bytes = contentLine.getBytes();
+            int length = new String(bytes, StandardCharsets.UTF_8).length();
+
+
+            if (length > 35) {
+                l.log(RED + "Error! " + RESET + "Title is longer than allowed 35 char, length ="
+                        + length + "\n Title: " + RED + contentLine + RESET);
+                return false;
+            }
+
 
             l.log("lua is " + luaLine);
             l.log("Content is " + contentLine);
