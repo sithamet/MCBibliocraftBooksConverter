@@ -4,24 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="de6bd2cf-0425-4703-bd68-d0551a3f026e" name="Changes" comment="BookBuilder, almost done parsing stage&#10;* Implemented book file sections scanner &#10;* implemented Title search &amp; parsing into Book instance &#10;* implemented Description search &amp; parsing &#10;&#10;Got issues with string.length() showing incorrect values, so no validity checks today.">
-      <change afterPath="$PROJECT_DIR$/lib/animal-sniffer-annotations-1.14-javadoc.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/animal-sniffer-annotations-1.14-sources.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/animal-sniffer-annotations-1.14.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/error_prone_annotations-2.0.18-javadoc.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/error_prone_annotations-2.0.18-sources.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/error_prone_annotations-2.0.18.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/guava-23.0-javadoc.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/guava-23.0-sources.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/guava-23.0.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/j2objc-annotations-1.1-javadoc.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/j2objc-annotations-1.1-sources.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/j2objc-annotations-1.1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/jsr305-1.3.9.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="de6bd2cf-0425-4703-bd68-d0551a3f026e" name="Changes" comment="Fixed Length() issue by encoding cludge">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/art/psyson/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/art/psyson/Book.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/art/psyson/BookBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/art/psyson/BookBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/art/psyson/util/FileTool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/art/psyson/util/FileTool.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/art/psyson/util/Functions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/art/psyson/util/Functions.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -87,6 +74,7 @@
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;last.edited.regexp&quot;: &quot;{\n  x:77,\n  y:4,\n  id:\&quot;minecraft:chest\&quot;,\n  z:-132,\n  Lock:\&quot;\&quot;,\n  ForgeCaps:{\n    \&quot;misca:lock\&quot;: {\n      secret:0,locked:0b,type:0b\n    },\n    \&quot;misca:supplies\&quot;:{\n      Last:0L,Price:1,MaxSeq:0,Batches:[],Int:1L}\n  },\n  Items:[\n  ]\n  }&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/vlasi/OneDrive/Documents/GitHub/BooksConverter/INPUT&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.17&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;Console&quot;
@@ -230,7 +218,14 @@
       <option name="project" value="LOCAL" />
       <updated>1659490330580</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Fixed Length() issue by encoding cludge">
+      <created>1659517505868</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1659517505868</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -252,6 +247,7 @@
     <MESSAGE value="* Abstract class &amp; method structure is ready&#10;* Session creation done" />
     <MESSAGE value="* Implemented file scanning, .md filtering and session creation. &#10;* Implemented book code grabbing via console &#10;* Created first classes for book building from .md files &#10;* Minor console experience improvements" />
     <MESSAGE value="BookBuilder, almost done parsing stage&#10;* Implemented book file sections scanner &#10;* implemented Title search &amp; parsing into Book instance &#10;* implemented Description search &amp; parsing &#10;&#10;Got issues with string.length() showing incorrect values, so no validity checks today." />
-    <option name="LAST_COMMIT_MESSAGE" value="BookBuilder, almost done parsing stage&#10;* Implemented book file sections scanner &#10;* implemented Title search &amp; parsing into Book instance &#10;* implemented Description search &amp; parsing &#10;&#10;Got issues with string.length() showing incorrect values, so no validity checks today." />
+    <MESSAGE value="Fixed Length() issue by encoding cludge" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed Length() issue by encoding cludge" />
   </component>
 </project>

@@ -13,8 +13,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static art.psyson.Main.SEP;
-import static art.psyson.util.CODES.RED;
-import static art.psyson.util.CODES.RESET;
+import static art.psyson.util.CODES.*;
+import static art.psyson.util.Functions.getLength;
 
 public class BookBuilder {
 
@@ -31,8 +31,9 @@ public class BookBuilder {
         l.log("Starting the building process...");
 
 
+        Map <Book,String> bookReport = new HashMap<>();
+
         for (File file : session.getFiles()) {
-            boolean fileBuildSucceed = false;
 
             List<List<String>> buffer = new ArrayList<>();
             scanRawBooksIntoBuffer(file, buffer);
@@ -49,54 +50,103 @@ public class BookBuilder {
                     String line = section.get(i);
 
                     //search for title
-                    titleFound = isTitleFound(section, i, line);
-                    if (titleFound) {
-                        book.setTitle(line);
+                    if (!titleFound) {
+                        titleFound = isTitleFound(section, i, line, file);
+                        if (titleFound) {
+                            book.setTitle(section.get(i + 5));
+                        }
                     }
 
                     //search for description
-                    descriptionFound = isDescriptionFound(section, i, line);
-                    if (descriptionFound) {
-                        parseBookDescription(section, book, i);
+                    if (!descriptionFound) {
+                        descriptionFound = isDescriptionFound(section, i, line);
+                        if (descriptionFound) {
+                            parseBookDescription(section, book, i, file);
+                        }
                     }
 
                     //search for content
+                    if (Pattern.compile("^### \\[").matcher(line).find() && !contentFound) {
+                        l.log("Content section is found: " + line);
+
+                        String contentLine = section.get(i + 2);
+                        l.log("Content's 1st line is " + contentLine);
+                        for (int k = i + 2; k < section.size(); k++) {
+                            book.content().add(section.get(k));
+                        }
+                        l.log("Book content is loaded; ");
+                        contentFound = true;
+                    }
 
 
                 }
+
+                l.log("Title found is " + titleFound);
+                l.log("Description found is " + descriptionFound);
+                l.log("Content found is " + contentFound);
 
                 if (titleFound && descriptionFound && contentFound) {
                     session.getBooks().add(book);
-                    l.log("Book + \"" + book.title.substring(3) + "\"");
+                    System.out.println(YELLOW + "Book + \"" + book.title.substring(3) + "\" is done" + RESET);
+                    bookReport.put(book, GREEN + "done" + RESET);
                 } else {
-                    l.log("Building of this book failed.");
+                    System.out.println(RED + "Error: Building of this book failed." + RESET);
+                    bookReport.put(book, RED + "failed" + RESET);
                 }
-
-
             }
 
 
         }
 
+        removeInvalidBooksFromBuild(bookReport);
+
+        for (Book book : session.getBooks()) {
+
+        }
+
+
+
 
     }
 
-    private void parseBookDescription(List<String> section, Book book, int i) {
+    private void removeInvalidBooksFromBuild(Map<Book, String> bookReport) {
+        l.log(GREEN + "Logging resulting books..." + RESET);
+        List<Book> newBooks = new ArrayList<>();
+        for (Book book : session.getBooks()) {
+            l.log(book.getPrettyTitle() + " " + bookReport.get(book));
+            if (!bookReport.get(book).equals(RED + "failed" + RESET)) {
+                newBooks.add(book);
+            }
+        }
+        session.getBooks().clear();
+        for (Book book : newBooks) {
+            session.getBooks().add(book);
+        }
+    }
+
+
+    private void parseBookDescription(List<String> section, Book book, int i, File file) {
         for (int k = i + 5; k < section.size(); k++) {
             String s = section.get(k);
             if (s.startsWith("&")) {
 
-                byte[] bytes = s.getBytes();
-                int length = new String(bytes, StandardCharsets.UTF_8).length();
+                int length = getLength(s);
+
+                String name = file.getName();
+                byte[] bytes = name.getBytes(StandardCharsets.UTF_8);
+                String nameDome = new String(bytes);
+
 
                 if (length > 61) {
-                    l.log(RED + "Error! " + RESET + "Description is longer than allowed 61 char, length = "
+                    System.out.println(RED + "Error! in file " + nameDome + RESET + "\nDescription is longer than allowed 61 char, length ="
                             + length + "\n Descr: " + RED + s + RESET);
-                    break;
+                } else {
+                    book.description().add(s);
+                    l.log("Line added to description: " + s);
+
                 }
 
-                book.description().add(s);
-                l.log("Line added to description: " + s);
+
             } else {
                 break;
             }
@@ -122,19 +172,18 @@ public class BookBuilder {
         return false;
     }
 
-    private boolean isTitleFound(List<String> section, int i, String line) {
+    private boolean isTitleFound(List<String> section, int i, String line, File file) {
         if (Pattern.compile("Название предмета").matcher(line).find()) {
             l.log("Title section is found: " + line);
 
             String luaLine = section.get(i + 4);
             String contentLine = section.get(i + 5);
 
-            byte[] bytes = contentLine.getBytes();
-            int length = new String(bytes, StandardCharsets.UTF_8).length();
+            int length = getLength(contentLine);
 
 
             if (length > 35) {
-                l.log(RED + "Error! " + RESET + "Title is longer than allowed 35 char, length ="
+                System.out.println(RED + "Error! in file " + file.getName() + RESET + "\nTitle is longer than allowed 35 char, length ="
                         + length + "\n Title: " + RED + contentLine + RESET);
                 return false;
             }

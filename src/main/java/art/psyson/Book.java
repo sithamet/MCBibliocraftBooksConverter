@@ -14,6 +14,10 @@ public class Book {
         return title;
     }
 
+    public String getPrettyTitle() {
+        return title.substring(2);
+    }
+
     public void setTitle(String title) {
         this.title = title;
     }

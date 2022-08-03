@@ -2,6 +2,7 @@ package art.psyson.util;
 
 import art.psyson.Main;
 
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -13,6 +14,12 @@ public class Functions {
 
     private Functions() {
     }
+
+    public static int getLength(String s) {
+        byte[] bytes = s.getBytes();
+        return new String(bytes, StandardCharsets.UTF_8).length();
+    }
+
 
 
     public static String formatAsHeader(String header) {

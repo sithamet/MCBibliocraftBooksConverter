@@ -3,6 +3,7 @@ package art.psyson.util;
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -17,6 +18,12 @@ public class FileTool {
     static Logger l = new Logger(new FileTool());
 
     private FileTool(){}
+
+    public static String toUtfString(String s) {
+        byte[] bytes = s.getBytes(StandardCharsets.UTF_8);
+        String result = new String(bytes);
+        return result;
+    }
 
     public static void logFile(File file) throws RuntimeException {
         l.log("Logging File properties...");
