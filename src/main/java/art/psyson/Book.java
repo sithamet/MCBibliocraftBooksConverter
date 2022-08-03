@@ -10,6 +10,16 @@ public class Book {
     List<String> content;
     String bookCode;
 
+    public String Title() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    String title;
+
     public String author() {
         return author;
     }

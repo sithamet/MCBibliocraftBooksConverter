@@ -36,6 +36,10 @@ public class Main {
 //        getChestCode();
         getSessionFiles(INPUT);
 
+        BookBuilder builder = new BookBuilder(session);
+
+        builder.buildBooks();
+
 
 
 

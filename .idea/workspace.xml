@@ -4,15 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="de6bd2cf-0425-4703-bd68-d0551a3f026e" name="Changes" comment="* Abstract class &amp; method structure is ready&#10;* Session creation done">
-      <change afterPath="$PROJECT_DIR$/src/main/java/art/psyson/util/CODES.java" afterDir="false" />
+    <list default="true" id="de6bd2cf-0425-4703-bd68-d0551a3f026e" name="Changes" comment="* Implemented file scanning, .md filtering and session creation. &#10;* Implemented book code grabbing via console &#10;* Created first classes for book building from .md files &#10;* Minor console experience improvements">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/art/psyson/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/art/psyson/Book.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/art/psyson/BookBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/art/psyson/BookBuilder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/art/psyson/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/art/psyson/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/art/psyson/Session.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/art/psyson/Session.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/art/psyson/util/FileTool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/art/psyson/util/FileTool.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/art/psyson/util/Functions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/art/psyson/util/Functions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/art/psyson/util/Logger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/art/psyson/util/Logger.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -157,7 +153,14 @@
       <option name="project" value="LOCAL" />
       <updated>1659468191687</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="* Implemented file scanning, .md filtering and session creation. &#10;* Implemented book code grabbing via console &#10;* Created first classes for book building from .md files &#10;* Minor console experience improvements">
+      <created>1659478494928</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1659478494928</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -176,6 +179,7 @@
     <MESSAGE value="Concept created, development started" />
     <MESSAGE value="Structure update" />
     <MESSAGE value="* Abstract class &amp; method structure is ready&#10;* Session creation done" />
-    <option name="LAST_COMMIT_MESSAGE" value="* Abstract class &amp; method structure is ready&#10;* Session creation done" />
+    <MESSAGE value="* Implemented file scanning, .md filtering and session creation. &#10;* Implemented book code grabbing via console &#10;* Created first classes for book building from .md files &#10;* Minor console experience improvements" />
+    <option name="LAST_COMMIT_MESSAGE" value="* Implemented file scanning, .md filtering and session creation. &#10;* Implemented book code grabbing via console &#10;* Created first classes for book building from .md files &#10;* Minor console experience improvements" />
   </component>
 </project>
