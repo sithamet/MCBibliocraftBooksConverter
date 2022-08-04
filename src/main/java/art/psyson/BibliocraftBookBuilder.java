@@ -43,7 +43,6 @@ public class BibliocraftBookBuilder {
         BibliocraftBook finalBook = new BibliocraftBook();
         pages = finalBook.pages;
         lines = new ArrayList<>();
-        pages.add(lines);
 
 
         for (String line : content) {
