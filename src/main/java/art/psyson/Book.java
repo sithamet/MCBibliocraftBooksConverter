@@ -5,10 +5,10 @@ import java.util.List;
 
 public class Book {
 
-    String author;
-    List<String> description;
-    List<String> content;
-    String bookCode;
+    private String author;
+    private final List<String> description;
+    private List<String> content;
+    private final String bookCode;
 
     public String Title() {
         return title;
@@ -22,7 +22,7 @@ public class Book {
         this.title = title;
     }
 
-    String title;
+    private String title;
 
     public String author() {
         return author;

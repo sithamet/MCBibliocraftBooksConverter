@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="de6bd2cf-0425-4703-bd68-d0551a3f026e" name="Changes" comment="Fixed Length() issue by encoding cludge">
+    <list default="true" id="de6bd2cf-0425-4703-bd68-d0551a3f026e" name="Changes" comment="File processing and raw book building is complete. Tested with one-book and multi-book files.">
+      <change afterPath="$PROJECT_DIR$/src/test/java/test.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/art/psyson/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/art/psyson/Book.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/art/psyson/BookBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/art/psyson/BookBuilder.java" afterDir="false" />
@@ -117,6 +118,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="test" />
+      <module name="BooksConverter.test" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="BooksConverter [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -161,6 +169,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.test" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Gradle.BooksConverter [build]" />
         <item itemvalue="Gradle.Tests in 'BooksConverter.test'" />
@@ -225,7 +234,14 @@
       <option name="project" value="LOCAL" />
       <updated>1659517505868</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="File processing and raw book building is complete. Tested with one-book and multi-book files.">
+      <created>1659566552666</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1659566552666</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -248,6 +264,7 @@
     <MESSAGE value="* Implemented file scanning, .md filtering and session creation. &#10;* Implemented book code grabbing via console &#10;* Created first classes for book building from .md files &#10;* Minor console experience improvements" />
     <MESSAGE value="BookBuilder, almost done parsing stage&#10;* Implemented book file sections scanner &#10;* implemented Title search &amp; parsing into Book instance &#10;* implemented Description search &amp; parsing &#10;&#10;Got issues with string.length() showing incorrect values, so no validity checks today." />
     <MESSAGE value="Fixed Length() issue by encoding cludge" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed Length() issue by encoding cludge" />
+    <MESSAGE value="File processing and raw book building is complete. Tested with one-book and multi-book files." />
+    <option name="LAST_COMMIT_MESSAGE" value="File processing and raw book building is complete. Tested with one-book and multi-book files." />
   </component>
 </project>

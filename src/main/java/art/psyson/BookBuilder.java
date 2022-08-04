@@ -18,6 +18,10 @@ import static art.psyson.util.Functions.getLength;
 
 public class BookBuilder {
 
+    final static String MC_BOLD = "§l";
+    final static String MC_ITAL = "§o";
+    final static String MC_RESET = "§r";
+
     Session session;
 
     Logger l;
@@ -31,8 +35,47 @@ public class BookBuilder {
         l.log("Starting the building process...");
 
 
-        Map <Book,String> bookReport = new HashMap<>();
+        Map<Book, String> bookReport = new HashMap<>();
 
+        parseBooksFromScritoriaFiles(bookReport);
+
+        removeInvalidBooksFromBuild(bookReport);
+
+        l.log("Translating Markdown into Minecraft codes...");
+
+        for (Book book : session.getBooks()) {
+            l.log(GREEN + "Converting a book " + book.getPrettyTitle() + RESET);
+            for (int i = 0; i < book.content().size(); i++) {
+                String line = book.content().get(i);
+
+                //replace bold
+                Pattern pattern = Pattern.compile("\\*\\*");
+                line = Functions.replacePatternWith(line, pattern, "§l", "§r");
+
+                //replace italics
+                pattern = Pattern.compile("\\*");
+                line = Functions.replacePatternWith(line, pattern, "§o", "§r");
+
+                //replace strikethrough
+                pattern = Pattern.compile("~~");
+                line = Functions.replacePatternWith(line, pattern, "§m", "§r");
+
+                book.content().set(i, line);
+                l.log(book.content().get(i));
+            }
+            l.log(GREEN + "Book converted" + RESET);
+        }
+
+    }
+
+    /**
+     * Parses all files from the Session and turns them into raw books
+     * It gets title, Description list, and raw content lists.
+     * todo It's planned that the Book is the default format for conversion to BiblioCraft
+     * while the Book can be built from different sources
+     * @param bookReport a Book-String map to store parse results: failed to not. Pay attention that results are surrounded by ANCII color codes
+     */
+    private void parseBooksFromScritoriaFiles(Map<Book, String> bookReport) {
         for (File file : session.getFiles()) {
 
             List<List<String>> buffer = new ArrayList<>();
@@ -87,7 +130,7 @@ public class BookBuilder {
 
                 if (titleFound && descriptionFound && contentFound) {
                     session.getBooks().add(book);
-                    System.out.println(YELLOW + "Book + \"" + book.title.substring(3) + "\" is done" + RESET);
+                    System.out.println(YELLOW + "Book + \"" + book.getPrettyTitle() + "\" is done" + RESET);
                     bookReport.put(book, GREEN + "done" + RESET);
                 } else {
                     System.out.println(RED + "Error: Building of this book failed." + RESET);
@@ -97,18 +140,12 @@ public class BookBuilder {
 
 
         }
-
-        removeInvalidBooksFromBuild(bookReport);
-
-        for (Book book : session.getBooks()) {
-
-        }
-
-
-
-
     }
 
+    /**
+     * Remove books that failed to built (no title/description, invalid title/descr, too loong title/descr
+     * @param bookReport a map of books with statuses
+     */
     private void removeInvalidBooksFromBuild(Map<Book, String> bookReport) {
         l.log(GREEN + "Logging resulting books..." + RESET);
         List<Book> newBooks = new ArrayList<>();
@@ -125,6 +162,12 @@ public class BookBuilder {
     }
 
 
+    /**
+     * Adds valid Description lines to the book, testing against the format & length limits
+     * @param section raw MD file section (list of lines between first-level # headings)
+     * @param i line position of the loop inside the section
+     * @param file current MD file (to refer error to the file, as no title may be available to use
+     */
     private void parseBookDescription(List<String> section, Book book, int i, File file) {
         for (int k = i + 5; k < section.size(); k++) {
             String s = section.get(k);
@@ -148,11 +191,19 @@ public class BookBuilder {
 
 
             } else {
+                l.log(YELLOW + "End of description." + RESET);
                 break;
             }
         }
     }
 
+    /**
+     * Find Scriptoria-style description and verify it matches the standard
+     * @param section raw MD file section (list of lines between first-level # headings)
+     * @param i line position of the loop inside the section
+     * @param line Current loop line to be tested against Scriptoria markup
+     * @return true if description is valid
+     */
     private boolean isDescriptionFound(List<String> section, int i, String line) {
         if (Pattern.compile("Описание \\(").matcher(line).find()) {
             l.log("Description section is found: " + line);
@@ -172,6 +223,14 @@ public class BookBuilder {
         return false;
     }
 
+    /**
+     * Find Scriptoria-style book title and verify it matches the standard. Also tests Title length
+     * @param section raw MD file section (list of lines between first-level # headings)
+     * @param i line position of the loop inside the section
+     * @param line Current loop line to be tested against Scriptoria markup
+     * @param file current MD file (to refer error to the file, as no title may be available to use
+     * @return
+     */
     private boolean isTitleFound(List<String> section, int i, String line, File file) {
         if (Pattern.compile("Название предмета").matcher(line).find()) {
             l.log("Title section is found: " + line);
@@ -202,6 +261,10 @@ public class BookBuilder {
         return false;
     }
 
+    /**
+     * Utility to log the content of the sections-divided MD file
+     * @param buffer
+     */
     private void logBufferContent(List<List<String>> buffer) {
         l.log("Logging buffer parts...");
 
