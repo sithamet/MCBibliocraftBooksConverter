@@ -40,6 +40,18 @@ public class BookBuilder {
         convertMarkdownToMinecraft(session.getBooks());
 
 
+        for (Book book : session.getBooks()) {
+
+            BibliocraftBookBuilder builder = new BibliocraftBookBuilder(1,book);
+            String bibliocraftNBTTag = builder.build();
+
+
+
+        }
+
+
+
+
     }
 
     private void convertMarkdownToMinecraft(List<Book> books) {

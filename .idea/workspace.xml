@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="de6bd2cf-0425-4703-bd68-d0551a3f026e" name="Changes" comment="Correct processing of Markdown to Minecraft Format Codes is complete. Supported: &#10;* bold &#10;* italics &#10;* strikethrough">
+    <list default="true" id="de6bd2cf-0425-4703-bd68-d0551a3f026e" name="Changes" comment="Minor code style improvements for conversopn">
+      <change afterPath="$PROJECT_DIR$/src/main/java/art/psyson/BibliocraftBookBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/art/psyson/BookBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/art/psyson/BookBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/art/psyson/util/Functions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/art/psyson/util/Functions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/test.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -245,7 +245,14 @@
       <option name="project" value="LOCAL" />
       <updated>1659616695528</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Minor code style improvements for conversopn">
+      <created>1659617205473</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1659617205473</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -270,6 +277,7 @@
     <MESSAGE value="Fixed Length() issue by encoding cludge" />
     <MESSAGE value="File processing and raw book building is complete. Tested with one-book and multi-book files." />
     <MESSAGE value="Correct processing of Markdown to Minecraft Format Codes is complete. Supported: &#10;* bold &#10;* italics &#10;* strikethrough" />
-    <option name="LAST_COMMIT_MESSAGE" value="Correct processing of Markdown to Minecraft Format Codes is complete. Supported: &#10;* bold &#10;* italics &#10;* strikethrough" />
+    <MESSAGE value="Minor code style improvements for conversopn" />
+    <option name="LAST_COMMIT_MESSAGE" value="Minor code style improvements for conversopn" />
   </component>
 </project>
