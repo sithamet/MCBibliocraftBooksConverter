@@ -1,18 +1,14 @@
 package art.psyson;
 
-import art.psyson.util.FileTool;
 import art.psyson.util.Functions;
 import art.psyson.util.Logger;
-import com.google.common.base.Utf8;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Path;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static art.psyson.Main.SEP;
 import static art.psyson.util.CODES.*;
 import static art.psyson.util.Functions.getLength;
 
@@ -41,31 +37,35 @@ public class BookBuilder {
 
         removeInvalidBooksFromBuild(bookReport);
 
-        l.log("Translating Markdown into Minecraft codes...");
+        convertMarkdownToMinecraft(session.getBooks());
 
-        for (Book book : session.getBooks()) {
+
+    }
+
+    private void convertMarkdownToMinecraft(List<Book> books) {
+        l.log(YELLOW + "Translating Markdown into Minecraft codes..." + RESET);
+        for (Book book : books) {
             l.log(GREEN + "Converting a book " + book.getPrettyTitle() + RESET);
             for (int i = 0; i < book.content().size(); i++) {
                 String line = book.content().get(i);
 
                 //replace bold
                 Pattern pattern = Pattern.compile("\\*\\*");
-                line = Functions.replacePatternWith(line, pattern, "§l", "§r");
+                line = Functions.replacePairPatternWith(line, pattern, "§l", "§r");
 
                 //replace italics
                 pattern = Pattern.compile("\\*");
-                line = Functions.replacePatternWith(line, pattern, "§o", "§r");
+                line = Functions.replacePairPatternWith(line, pattern, "§o", "§r");
 
                 //replace strikethrough
                 pattern = Pattern.compile("~~");
-                line = Functions.replacePatternWith(line, pattern, "§m", "§r");
+                line = Functions.replacePairPatternWith(line, pattern, "§m", "§r");
 
                 book.content().set(i, line);
-                l.log(book.content().get(i));
+//                l.log(book.content().get(i));
             }
             l.log(GREEN + "Book converted" + RESET);
         }
-
     }
 
     /**

@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="de6bd2cf-0425-4703-bd68-d0551a3f026e" name="Changes" comment="File processing and raw book building is complete. Tested with one-book and multi-book files.">
-      <change afterPath="$PROJECT_DIR$/src/test/java/test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/art/psyson/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/art/psyson/Book.java" afterDir="false" />
+    <list default="true" id="de6bd2cf-0425-4703-bd68-d0551a3f026e" name="Changes" comment="Correct processing of Markdown to Minecraft Format Codes is complete. Supported: &#10;* bold &#10;* italics &#10;* strikethrough">
       <change beforePath="$PROJECT_DIR$/src/main/java/art/psyson/BookBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/art/psyson/BookBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/art/psyson/util/FileTool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/art/psyson/util/FileTool.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/art/psyson/util/Functions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/art/psyson/util/Functions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/test.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -241,7 +238,14 @@
       <option name="project" value="LOCAL" />
       <updated>1659566552666</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Correct processing of Markdown to Minecraft Format Codes is complete. Supported: &#10;* bold &#10;* italics &#10;* strikethrough">
+      <created>1659616695528</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1659616695528</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -265,6 +269,7 @@
     <MESSAGE value="BookBuilder, almost done parsing stage&#10;* Implemented book file sections scanner &#10;* implemented Title search &amp; parsing into Book instance &#10;* implemented Description search &amp; parsing &#10;&#10;Got issues with string.length() showing incorrect values, so no validity checks today." />
     <MESSAGE value="Fixed Length() issue by encoding cludge" />
     <MESSAGE value="File processing and raw book building is complete. Tested with one-book and multi-book files." />
-    <option name="LAST_COMMIT_MESSAGE" value="File processing and raw book building is complete. Tested with one-book and multi-book files." />
+    <MESSAGE value="Correct processing of Markdown to Minecraft Format Codes is complete. Supported: &#10;* bold &#10;* italics &#10;* strikethrough" />
+    <option name="LAST_COMMIT_MESSAGE" value="Correct processing of Markdown to Minecraft Format Codes is complete. Supported: &#10;* bold &#10;* italics &#10;* strikethrough" />
   </component>
 </project>

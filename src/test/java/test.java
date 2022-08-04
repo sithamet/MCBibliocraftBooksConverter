@@ -24,13 +24,13 @@ public class test {
         //translating bold
 
         Pattern pattern = Pattern.compile("\\*\\*");
-        testInput = Functions.replacePatternWith(testInput, pattern, "11", "22");
+        testInput = Functions.replacePairPatternWith(testInput, pattern, "11", "22");
 
         pattern = Pattern.compile("\\*");
-        testInput = Functions.replacePatternWith(testInput, pattern, "<i>", "</i>");
+        testInput = Functions.replacePairPatternWith(testInput, pattern, "<i>", "</i>");
 
         pattern = Pattern.compile("\\*");
-        testInput = Functions.replacePatternWith(testInput, pattern, "<i>", "</i>");
+        testInput = Functions.replacePairPatternWith(testInput, pattern, "<i>", "</i>");
 
 
 

@@ -1,7 +1,5 @@
 package art.psyson.util;
 
-import art.psyson.Main;
-
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Locale;
@@ -10,9 +8,6 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static art.psyson.util.CODES.RED;
-import static art.psyson.util.CODES.RESET;
-
 public class Functions {
 
     static Logger l = new Logger(new Functions());
@@ -20,6 +15,11 @@ public class Functions {
     private Functions() {
     }
 
+    /**
+     * Get correct length for Cyrillic string
+     * @param s String
+     * @return length that matches the visual num of characters
+     */
     public static int getLength(String s) {
         byte[] bytes = s.getBytes();
         return new String(bytes, StandardCharsets.UTF_8).length();
@@ -53,7 +53,16 @@ public class Functions {
         return new String(bytes, StandardCharsets.UTF_8);
     }
 
-    public static String replacePatternWith(String testInput, Pattern pattern, String startTag, String finishTag) {
+    /** Replaces repeating pattern. Useful for markdown conversion, brackets replacement, etc.
+     * I.e. if you send String "**replace it**", Pattern "**" (escaped ofc) and tags "!" and "?",
+     * it will return "!replace it?"
+     * @param testInput String to replace
+     * @param pattern Pattern compiled
+     * @param startTag first tag to replace.
+     * @param finishTag finish tag to replace
+     * @return String with the replacement of all pairs, OR testInput if no matches found
+     */
+    public static String replacePairPatternWith(String testInput, Pattern pattern, String startTag, String finishTag) {
         String s = "";
         Matcher matcher = pattern.matcher(testInput);
 
