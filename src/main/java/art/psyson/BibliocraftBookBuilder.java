@@ -59,10 +59,7 @@ public class BibliocraftBookBuilder {
             for (String s : lineWords) {
                 int currentLen = Functions.getLength(currentLine);
                 int wordLen = Functions.getLength(s);
-                l.log("Adding word \"" + YELLOW + "%s" + RESET + "\"." +
-                        "\nLL=%d," +
-                        "\nWL=%d," +
-                        "\nLnum=%d,\nLL+WL=%d", s, currentLen, wordLen, lines.size(), currentLen + wordLen);
+                l.log("Adding word \"" + YELLOW + "%s" + RESET + "\"." + "\nLL=%d," + "\nWL=%d," + "\nLnum=%d,\nLL+WL=%d", s, currentLen, wordLen, lines.size(), currentLen + wordLen);
 
 
                 // if current line is shorter than limit
@@ -71,7 +68,7 @@ public class BibliocraftBookBuilder {
 
                     //if after adding next word with a space the limit is still available
                     if (currentLen + wordLen + 1 <= CHARS) {
-                        l.log("minor LL + WL + 1 <" + CHARS);
+                        l.log("minor LL + WL + 1 <=" + CHARS);
 
                         currentLine = currentLine + s + " ";
                         index++;
@@ -93,7 +90,7 @@ public class BibliocraftBookBuilder {
                             //if the next word is too big, we need to create a new line
                             if (currentLen + wordLen + 1 > CHARS) {
                                 l.log("minor LL + WL + 1 > " + CHARS);
-                                addNewLine(currentLine);
+                                addNewLine(currentLine); //приобрести
                                 currentLine = s + " ";
                                 index++;
                             }
@@ -110,14 +107,25 @@ public class BibliocraftBookBuilder {
 
 
                 if (index == end) {
-                    l.log(YELLOW + "end of lineWords reached" + RESET);
+                    l.log(YELLOW + "end of raw String reached" + RESET);
                     addNewLine(currentLine);
                 }
 
             }
         }
 
+        l.log(BLUE + "Book parsing finished. Adding last page..." + RESET);
+        pages.add(lines);
 
+
+
+        logBookLinesToFile();
+
+
+        return "";
+    }
+
+    private void logBookLinesToFile() {
         String path = session.getTempSessionPath().toString() + SEP + "booklines " + book.ID + ".txt";
         FileTool.createNewFile(path);
 
@@ -148,18 +156,27 @@ public class BibliocraftBookBuilder {
             }
         }
         writer.close();
-
-
-        return "";
     }
 
     private void addNewLine(String currentLine) {
         l.log("Adding a new line to a page with " + lines.size() + " lines");
         if (lines.size() < LINES) {
+            l.log("Adding line to the page");
             lines.add(currentLine);
+            if (lines.size() == LINES) {
+                l.log("Lines limit is reached=" + lines.size() +
+                        ". Adding a new page to " + pages.size() + "-book");
+                pages.add(lines);
+                l.log("Adding a new page. Now pages num is " + pages.size());
+                lines = new ArrayList<>();
+            }
             // if no -- we need to create a new page aka lines list
         } else {
+            l.log("ELSE Lines limit is reached=" + lines.size() +
+                    ". Adding a new page to " + pages.size() + "-book");
             pages.add(lines);
+            l.log("Adding a new fill page. Now pages num is " + pages.size());
+
             lines = new ArrayList<>();
             lines.add(currentLine);
         }

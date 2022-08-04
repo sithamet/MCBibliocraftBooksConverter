@@ -4,17 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="de6bd2cf-0425-4703-bd68-d0551a3f026e" name="Changes" comment="Started BibliocraftBookBuilder implementation">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="de6bd2cf-0425-4703-bd68-d0551a3f026e" name="Changes" comment="Encoding problems fixed! The recipe &#10;&#10;* ctrl-alt-s - File Encodings - Global Encodings = windows-1251&#10;  остальные три = UTF-8. &#10;  IDEa 2022.1.3, OpenJDK 17.0.2&#10;* -Dfile.encoding=UTF-8 + -Dconsole.encoding=UTF-8 into Help &gt; Custom VM options &#10;* Changing BookBuilder.scanRawBooksIntoBuffer FileReader encoding into UTF-8">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/art/psyson/BibliocraftBookBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/art/psyson/BibliocraftBookBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/art/psyson/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/art/psyson/Book.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/art/psyson/BookBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/art/psyson/BookBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/art/psyson/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/art/psyson/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/art/psyson/Session.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/art/psyson/Session.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/art/psyson/util/FileTool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/art/psyson/util/FileTool.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/art/psyson/util/Functions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/art/psyson/util/Functions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/test.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -276,7 +268,14 @@
       <option name="project" value="LOCAL" />
       <updated>1659622000966</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Encoding problems fixed! The recipe &#10;&#10;* ctrl-alt-s - File Encodings - Global Encodings = windows-1251&#10;  остальные три = UTF-8. &#10;  IDEa 2022.1.3, OpenJDK 17.0.2&#10;* -Dfile.encoding=UTF-8 + -Dconsole.encoding=UTF-8 into Help &gt; Custom VM options &#10;* Changing BookBuilder.scanRawBooksIntoBuffer FileReader encoding into UTF-8">
+      <created>1659648651676</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1659648651676</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -303,7 +302,8 @@
     <MESSAGE value="Correct processing of Markdown to Minecraft Format Codes is complete. Supported: &#10;* bold &#10;* italics &#10;* strikethrough" />
     <MESSAGE value="Minor code style improvements for conversopn" />
     <MESSAGE value="Started BibliocraftBookBuilder implementation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Started BibliocraftBookBuilder implementation" />
+    <MESSAGE value="Encoding problems fixed! The recipe &#10;&#10;* ctrl-alt-s - File Encodings - Global Encodings = windows-1251&#10;  остальные три = UTF-8. &#10;  IDEa 2022.1.3, OpenJDK 17.0.2&#10;* -Dfile.encoding=UTF-8 + -Dconsole.encoding=UTF-8 into Help &gt; Custom VM options &#10;* Changing BookBuilder.scanRawBooksIntoBuffer FileReader encoding into UTF-8" />
+    <option name="LAST_COMMIT_MESSAGE" value="Encoding problems fixed! The recipe &#10;&#10;* ctrl-alt-s - File Encodings - Global Encodings = windows-1251&#10;  остальные три = UTF-8. &#10;  IDEa 2022.1.3, OpenJDK 17.0.2&#10;* -Dfile.encoding=UTF-8 + -Dconsole.encoding=UTF-8 into Help &gt; Custom VM options &#10;* Changing BookBuilder.scanRawBooksIntoBuffer FileReader encoding into UTF-8" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
