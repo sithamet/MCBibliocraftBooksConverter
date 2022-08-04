@@ -41,14 +41,11 @@ public class Main {
         builder.buildBooks();
 
 
-
-
-
-
     }
 
     /**
      * Gets session's .md files for scan from the specified location.
+     *
      * @param location Location path string. session's temp location is Zip method is used, INPUT is .md method is used
      * @throws IOException
      */
@@ -121,16 +118,16 @@ public class Main {
             } else if (!input.matches("(.*)id:\"minecraft:chest\"(.*)")) {
                 System.out.println(
                         "\u001B[31m"
-                                + "Please paste the valid code!" + RESET + " It must have " + YELLOW_B + "\"id:\"minecraft:chest\"," + RESET + " and empty " + YELLOW_B  + "Items[]" + RESET +" array");
+                                + "Please paste the valid code!" + RESET + " It must have " + YELLOW_B + "\"id:\"minecraft:chest\"," + RESET + " and empty " + YELLOW_B + "Items[]" + RESET + " array");
             } else {
 //                l.log("Input before truncation");
 //                l.log(input);
 
                 StringBuffer buffer = new StringBuffer(input);
-                buffer.deleteCharAt(buffer.length()-1);
-                buffer.deleteCharAt(buffer.length()-1);
-                buffer.deleteCharAt(buffer.length()-1);
-                buffer.deleteCharAt(buffer.length()-1);
+                buffer.deleteCharAt(buffer.length() - 1);
+                buffer.deleteCharAt(buffer.length() - 1);
+                buffer.deleteCharAt(buffer.length() - 1);
+                buffer.deleteCharAt(buffer.length() - 1);
 
 //                l.log("Input after  truncation");
 //                l.log(buffer.toString());

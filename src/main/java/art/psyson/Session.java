@@ -35,7 +35,7 @@ public class Session {
     private List<Book> books;
     private List<File> files;
 
-    private  Logger l;
+    private Logger l;
 
 
     public String getChestCode() {
@@ -55,6 +55,6 @@ public class Session {
         this.files = new ArrayList<>();
         l = new Logger(this);
         tempSessionPath.toFile().mkdirs();
-        l.log("New session at path%s created",tempSessionPath.toAbsolutePath());
+        l.log("New session at path%s created", tempSessionPath.toAbsolutePath());
     }
 }

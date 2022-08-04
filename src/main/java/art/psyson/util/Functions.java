@@ -17,6 +17,7 @@ public class Functions {
 
     /**
      * Get correct length for Cyrillic string
+     *
      * @param s String
      * @return length that matches the visual num of characters
      */
@@ -49,16 +50,19 @@ public class Functions {
     }
 
     public static String toUtfString(String s) {
-        byte[] bytes = s.getBytes();
+        byte[] bytes = s.getBytes(StandardCharsets.UTF_8);
         return new String(bytes, StandardCharsets.UTF_8);
     }
 
-    /** Replaces repeating pattern. Useful for markdown conversion, brackets replacement, etc.
+
+    /**
+     * Replaces repeating pattern. Useful for markdown conversion, brackets replacement, etc.
      * I.e. if you send String "**replace it**", Pattern "**" (escaped ofc) and tags "!" and "?",
      * it will return "!replace it?"
+     *
      * @param testInput String to replace
-     * @param pattern Pattern compiled
-     * @param startTag first tag to replace.
+     * @param pattern   Pattern compiled
+     * @param startTag  first tag to replace.
      * @param finishTag finish tag to replace
      * @return String with the replacement of all pairs, OR testInput if no matches found
      */

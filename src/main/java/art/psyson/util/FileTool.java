@@ -15,7 +15,8 @@ public class FileTool {
 
     static Logger l = new Logger(new FileTool());
 
-    private FileTool(){}
+    private FileTool() {
+    }
 
 
     public static void logFile(File file) throws RuntimeException {
@@ -38,7 +39,8 @@ public class FileTool {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        };
+        }
+        ;
     }
 
     public static void createNewFile(File file) {
@@ -74,9 +76,8 @@ public class FileTool {
     }
 
 
-
     public static Set<String> listFilesInDirectory(String directoryPath) {
-        if(new File(directoryPath).listFiles() == null)  {
+        if (new File(directoryPath).listFiles() == null) {
             l.log("Directory %s is empty", directoryPath);
             return new HashSet<>();
         }

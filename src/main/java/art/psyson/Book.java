@@ -2,13 +2,16 @@ package art.psyson;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class Book {
 
+    final public UUID ID;
     private String author;
     private final List<String> description;
     private List<String> content;
     private final String bookCode;
+
 
     public String Title() {
         return title;
@@ -50,8 +53,8 @@ public class Book {
         this.content = new ArrayList<>();
         this.description = new ArrayList<>();
         bookCode = "";
+        ID = UUID.randomUUID();
     }
-
 
 
 }

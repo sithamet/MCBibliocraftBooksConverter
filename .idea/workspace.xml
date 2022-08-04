@@ -4,10 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="de6bd2cf-0425-4703-bd68-d0551a3f026e" name="Changes" comment="Minor code style improvements for conversopn">
-      <change afterPath="$PROJECT_DIR$/src/main/java/art/psyson/BibliocraftBookBuilder.java" afterDir="false" />
+    <list default="true" id="de6bd2cf-0425-4703-bd68-d0551a3f026e" name="Changes" comment="Started BibliocraftBookBuilder implementation">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/art/psyson/BibliocraftBookBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/art/psyson/BibliocraftBookBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/art/psyson/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/art/psyson/Book.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/art/psyson/BookBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/art/psyson/BookBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/art/psyson/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/art/psyson/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/art/psyson/Session.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/art/psyson/Session.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/art/psyson/util/FileTool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/art/psyson/util/FileTool.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/art/psyson/util/Functions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/art/psyson/util/Functions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/test.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,7 +82,7 @@
     &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.17&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;Console&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;File.Encoding&quot;
   },
   &quot;keyToStringList&quot;: {
     &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
@@ -84,6 +91,9 @@
   }
 }</component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="art.psyson" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\vlasi\OneDrive\Documents\GitHub\BooksConverter\INPUT" />
       <recent name="C:\Users\vlasi\OneDrive\Documents\GitHub\BooksConverter\src\main\java\art\psyson" />
@@ -166,8 +176,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.test" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.test" />
         <item itemvalue="Gradle.BooksConverter [build]" />
         <item itemvalue="Gradle.Tests in 'BooksConverter.test'" />
       </list>
@@ -252,7 +262,21 @@
       <option name="project" value="LOCAL" />
       <updated>1659617205473</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Started BibliocraftBookBuilder implementation">
+      <created>1659621865105</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1659621865105</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Started BibliocraftBookBuilder implementation">
+      <created>1659622000966</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1659622000966</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -278,6 +302,11 @@
     <MESSAGE value="File processing and raw book building is complete. Tested with one-book and multi-book files." />
     <MESSAGE value="Correct processing of Markdown to Minecraft Format Codes is complete. Supported: &#10;* bold &#10;* italics &#10;* strikethrough" />
     <MESSAGE value="Minor code style improvements for conversopn" />
-    <option name="LAST_COMMIT_MESSAGE" value="Minor code style improvements for conversopn" />
+    <MESSAGE value="Started BibliocraftBookBuilder implementation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Started BibliocraftBookBuilder implementation" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

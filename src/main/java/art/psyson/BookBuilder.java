@@ -42,14 +42,9 @@ public class BookBuilder {
 
         for (Book book : session.getBooks()) {
 
-            BibliocraftBookBuilder builder = new BibliocraftBookBuilder(1,book);
+            BibliocraftBookBuilder builder = new BibliocraftBookBuilder("1.0", book);
             String bibliocraftNBTTag = builder.build();
-
-
-
         }
-
-
 
 
     }
@@ -85,6 +80,7 @@ public class BookBuilder {
      * It gets title, Description list, and raw content lists.
      * todo It's planned that the Book is the default format for conversion to BiblioCraft
      * while the Book can be built from different sources
+     *
      * @param bookReport a Book-String map to store parse results: failed to not. Pay attention that results are surrounded by ANCII color codes
      */
     private void parseBooksFromScritoriaFiles(Map<Book, String> bookReport) {
@@ -156,6 +152,7 @@ public class BookBuilder {
 
     /**
      * Remove books that failed to built (no title/description, invalid title/descr, too loong title/descr
+     *
      * @param bookReport a map of books with statuses
      */
     private void removeInvalidBooksFromBuild(Map<Book, String> bookReport) {
@@ -176,9 +173,10 @@ public class BookBuilder {
 
     /**
      * Adds valid Description lines to the book, testing against the format & length limits
+     *
      * @param section raw MD file section (list of lines between first-level # headings)
-     * @param i line position of the loop inside the section
-     * @param file current MD file (to refer error to the file, as no title may be available to use
+     * @param i       line position of the loop inside the section
+     * @param file    current MD file (to refer error to the file, as no title may be available to use
      */
     private void parseBookDescription(List<String> section, Book book, int i, File file) {
         for (int k = i + 5; k < section.size(); k++) {
@@ -211,9 +209,10 @@ public class BookBuilder {
 
     /**
      * Find Scriptoria-style description and verify it matches the standard
+     *
      * @param section raw MD file section (list of lines between first-level # headings)
-     * @param i line position of the loop inside the section
-     * @param line Current loop line to be tested against Scriptoria markup
+     * @param i       line position of the loop inside the section
+     * @param line    Current loop line to be tested against Scriptoria markup
      * @return true if description is valid
      */
     private boolean isDescriptionFound(List<String> section, int i, String line) {
@@ -237,10 +236,11 @@ public class BookBuilder {
 
     /**
      * Find Scriptoria-style book title and verify it matches the standard. Also tests Title length
+     *
      * @param section raw MD file section (list of lines between first-level # headings)
-     * @param i line position of the loop inside the section
-     * @param line Current loop line to be tested against Scriptoria markup
-     * @param file current MD file (to refer error to the file, as no title may be available to use
+     * @param i       line position of the loop inside the section
+     * @param line    Current loop line to be tested against Scriptoria markup
+     * @param file    current MD file (to refer error to the file, as no title may be available to use
      * @return
      */
     private boolean isTitleFound(List<String> section, int i, String line, File file) {
@@ -275,6 +275,7 @@ public class BookBuilder {
 
     /**
      * Utility to log the content of the sections-divided MD file
+     *
      * @param buffer
      */
     private void logBufferContent(List<List<String>> buffer) {
@@ -300,7 +301,10 @@ public class BookBuilder {
         Scanner scanner = null;
 
         try {
-            scanner = new Scanner(new FileReader(file));
+            FileReader reader = new FileReader(file, StandardCharsets.UTF_8);
+            String encoding = reader.getEncoding();
+            scanner = new Scanner(reader);
+            l.log(RED + "ENCODING = " + encoding + RESET);
 
         } catch (IOException e) {
             e.printStackTrace();
