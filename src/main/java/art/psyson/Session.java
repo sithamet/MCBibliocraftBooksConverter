@@ -1,16 +1,20 @@
 package art.psyson;
 
 import art.psyson.util.FileTool;
+import art.psyson.util.Functions;
 import art.psyson.util.Logger;
 
 import java.io.File;
-import java.nio.file.Files;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
-import static art.psyson.Main.SEP;
-import static art.psyson.Main.TEMP;
+import static art.psyson.Main.*;
+import static art.psyson.util.CODES.RED;
+import static art.psyson.util.CODES.RESET;
 
 public class Session {
 
@@ -30,10 +34,12 @@ public class Session {
         return files;
     }
 
-    private String sessionTimeStamp;
-    private Path tempSessionPath;
-    private List<Book> books;
-    private List<File> files;
+    private final String sessionTimeStamp;
+    private final Path tempSessionPath;
+    private final List<Book> books;
+    private final List<File> files;
+
+    public final HashMap<String, String> CATEGORIES;
 
     public int getChestCoordinateX() {
         return chestCoordinateX;
@@ -67,15 +73,15 @@ public class Session {
     private Logger l;
 
 
-    public String getChestCode() {
+    public String CHEST_CODE() {
         if (chestCoordinateX == null || chestCoordinateY == null || chestCoordinateZ == null) {
             return null;
         } else {
-            return String.format(chestCode, chestCoordinateX, chestCoordinateY, chestCoordinateZ);
+            return String.format(CHEST_CODE, chestCoordinateX, chestCoordinateY, chestCoordinateZ);
         }
     }
 
-    final String chestCode = "{\n x:%d,\n" +
+    final String CHEST_CODE = "{\n x:%d,\n" +
             "  y:%d,\n" +
             "  id:\"minecraft:chest\",\n" +
             "  z:%d,\n" +
@@ -90,6 +96,8 @@ public class Session {
             "  Items:[";
 
     public Session(String sessionTimeStamp) {
+        CATEGORIES = new HashMap<>();
+        initCategories();
         this.sessionTimeStamp = sessionTimeStamp;
         this.tempSessionPath = Path.of(TEMP + SEP + sessionTimeStamp);
         books = new ArrayList<>();
@@ -97,5 +105,25 @@ public class Session {
         l = new Logger(this);
         tempSessionPath.toFile().mkdirs();
         l.log("New session at path%s created", tempSessionPath.toAbsolutePath());
+    }
+
+    private void initCategories() {
+        Scanner scanner = null;
+
+        try {
+            scanner = new Scanner(
+                    new FileReader(
+                            new File(INPUT + SEP + "CATEGORIES" + SEP + "CATS.txt"), StandardCharsets.UTF_8));
+        } catch (IOException e) {
+            System.out.println(RED + "Warning! " + RESET + "No categories file is found. Created one for you for next builds.");
+            FileTool.createNewFile(INPUT + SEP + "CATEGORIES" + SEP + "CATS.txt");
+            return;
+        }
+
+        while (scanner.hasNextLine()) {
+            CATEGORIES.put(scanner.nextLine(), scanner.nextLine());
+        }
+
+        Functions.printMapToLog(CATEGORIES);
     }
 }

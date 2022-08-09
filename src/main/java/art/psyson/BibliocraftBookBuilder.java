@@ -45,7 +45,7 @@ public class BibliocraftBookBuilder {
     public String build() {
         translateRawStringsToBiblioFormat();
 
-        logBookLinesToFile();
+//        logBookLinesToFile();
 
         StringBuilder builder = new StringBuilder();
         builder.append("{");
@@ -61,7 +61,7 @@ public class BibliocraftBookBuilder {
         builder.append(String.format("pagesTotal:%d,\n", pages.size()));
 
         if (book.author() == null) {
-            builder.append("author: \"Издательство Скрипторес\",\n");
+            builder.append("author: \"Неизвестен\",\n");
         } else {
             builder.append("author: \"" + book.author() + "\",\n");
         }
@@ -176,16 +176,16 @@ public class BibliocraftBookBuilder {
 
                 int currentLen = Functions.getLength(currentLine);
                 int wordLen = Functions.getLength(s);
-                l.log("Adding word \"" + YELLOW + "%s" + RESET + "\"." + "\nLL=%d," + "\nWL=%d," + "\nLnum=%d,\nLL+WL=%d", s, currentLen, wordLen, lines.size(), currentLen + wordLen);
+                //l.log("Adding word \"" + YELLOW + "%s" + RESET + "\"." + "\nLL=%d," + "\nWL=%d," + "\nLnum=%d,\nLL+WL=%d", s, currentLen, wordLen, lines.size(), currentLen + wordLen);
 
 
                 // if current line is shorter than limit
                 if (currentLen < limit) {
-                    l.log(YELLOW + "major LL < " + limit + RESET);
+                    //l.log(YELLOW + "major LL < " + limit + RESET);
 
                     //if after adding next word with a space the limit is still available
                     if (currentLen + wordLen + 1 <= limit) {
-                        l.log("minor LL + WL + 1 <=" + limit);
+                        //l.log("minor LL + WL + 1 <=" + limit);
 
                         currentLine = currentLine + s + " ";
                         index++;
@@ -193,7 +193,7 @@ public class BibliocraftBookBuilder {
 
                         //if after adding next word, the limit is over
                         if (currentLen + wordLen == limit) {
-                            l.log("minor LL + WL ==" + limit);
+                            //l.log("minor LL + WL ==" + limit);
                             currentLine = currentLine + s;
 
                             //if there empty lines left on the page to add new one
@@ -206,25 +206,25 @@ public class BibliocraftBookBuilder {
 
                             //if the next word is too big, we need to create a new line
                             if (currentLen + wordLen + 1 > limit) {
-                                l.log("minor LL + WL + 1 > " + limit);
+                                //l.log("minor LL + WL + 1 > " + limit);
                                 addNewLine(currentLine); //приобрести
                                 currentLine = s + " ";
                                 index++;
                             }
 
                 } else if (currentLen == limit) {
-                    l.log(YELLOW + " major LL == " + limit + RESET);
+                    //l.log(YELLOW + " major LL == " + limit + RESET);
                     addNewLine(currentLine);
                     currentLine = s + " ";
                     index++;
                 } else {
-                    l.log(RED + "Fatal Error! " + RESET + " The case does not match any cases!");
+                    //l.log(RED + "Fatal Error! " + RESET + " The case does not match any cases!");
 
                 }
 
 
                 if (index == end) {
-                    l.log(YELLOW + "end of raw String reached" + RESET);
+                    //l.log(YELLOW + "end of raw String reached" + RESET);
                     addNewLine(currentLine);
                 }
 

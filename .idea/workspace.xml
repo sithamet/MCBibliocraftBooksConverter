@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="de6bd2cf-0425-4703-bd68-d0551a3f026e" name="Changes" comment="+ BookBuilder --&gt; GenericBookBuilder refactor">
+    <list default="true" id="de6bd2cf-0425-4703-bd68-d0551a3f026e" name="Changes" comment="* GenericBookBuilder refactor &#10;* Removed unused dependencies">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/art/psyson/BibliocraftBookBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/art/psyson/BibliocraftBookBuilder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/art/psyson/GenericBookBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/art/psyson/GenericBookBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/art/psyson/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/art/psyson/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/art/psyson/Session.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/art/psyson/Session.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,29 +62,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;true&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;true&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;last.edited.regexp&quot;: &quot;{\n  x:77,\n  y:4,\n  id:\&quot;minecraft:chest\&quot;,\n  z:-132,\n  Lock:\&quot;\&quot;,\n  ForgeCaps:{\n    \&quot;misca:lock\&quot;: {\n      secret:0,locked:0b,type:0b\n    },\n    \&quot;misca:supplies\&quot;:{\n      Last:0L,Price:1,MaxSeq:0,Batches:[],Int:1L}\n  },\n  Items:[\n  ]\n  }&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/vlasi/OneDrive/Documents/GitHub/BooksConverter/INPUT&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.17&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Downloaded.Files.Path.Enabled": "true",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "true",
+    "Repository.Attach.Sources": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "last.edited.regexp": "{\n  x:77,\n  y:4,\n  id:\"minecraft:chest\",\n  z:-132,\n  Lock:\"\",\n  ForgeCaps:{\n    \"misca:lock\": {\n      secret:0,locked:0b,type:0b\n    },\n    \"misca:supplies\":{\n      Last:0L,Price:1,MaxSeq:0,Batches:[],Int:1L}\n  },\n  Items:[\n  ]\n  }",
+    "last_opened_file_path": "C:/Users/vlasi/OneDrive/Documents/GitHub/BooksConverter/INPUT",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.17",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "Console"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
-      &quot;JSON&quot;
+  "keyToStringList": {
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "JSON"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="art.psyson" />
@@ -312,7 +313,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660073107640</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="* GenericBookBuilder refactor &#10;* Removed unused dependencies">
+      <created>1660081239197</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1660081239197</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -345,7 +353,8 @@
     <MESSAGE value="Final pre-category version" />
     <MESSAGE value="Features &#10;* Icon adding to file enabled &#10;* Author adding &amp; default enabled &#10;&#10;+ book tags from .md file are now added to each Book instance &#10;&#10;+ BookBuilder --&gt; GenericBookBuilder refactor" />
     <MESSAGE value="+ BookBuilder --&gt; GenericBookBuilder refactor" />
-    <option name="LAST_COMMIT_MESSAGE" value="+ BookBuilder --&gt; GenericBookBuilder refactor" />
+    <MESSAGE value="* GenericBookBuilder refactor &#10;* Removed unused dependencies" />
+    <option name="LAST_COMMIT_MESSAGE" value="* GenericBookBuilder refactor &#10;* Removed unused dependencies" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

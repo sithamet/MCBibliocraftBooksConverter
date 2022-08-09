@@ -41,7 +41,7 @@ public class Main {
 
         startSession();
 
-        while (session.getChestCode() == null) {
+        while (session.CHEST_CODE() == null) {
             try {
                 initChestCode();
             } catch (IllegalArgumentException e) {
@@ -132,7 +132,7 @@ public class Main {
         session.setChestCoordinateZ(parseChestCoordinates(input, "z"));
 
 
-        l.log(session.getChestCode());
+        l.log(session.CHEST_CODE());
 
     }
 

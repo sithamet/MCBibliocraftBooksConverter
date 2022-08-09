@@ -15,6 +15,15 @@ import static art.psyson.Main.SEP;
 import static art.psyson.util.CODES.*;
 import static art.psyson.util.Functions.getLength;
 
+/**
+ * Parses Session's object .md files from Notion for content (title, description, content, author, icon code, tags) and
+ * builds Book objects for further work.
+ * <br><br>
+ * Then, calls  implementation (BibliocraftBookBuilder at the moment) to create chest item's NBT file with all the books
+ * <br><br>
+ * <b>Warning:</b> BibliocraftBookBuilder must be called AFTER Book sample is ready. E.g., if you want to build books only
+ * on one topic, you must first create an array of built Book objects, and then iterate them with BibliocraftBookBuilder
+ */
 public class GenericBookBuilder {
 
     final static String MC_BOLD = "§l";
@@ -56,17 +65,21 @@ public class GenericBookBuilder {
         // todo here starts building the chest file
         StringBuilder code = new StringBuilder();
 
-        code.append(session.getChestCode());
-        l.log("CHEST CODE IS \n" + session.getChestCode());
+        code.append(session.CHEST_CODE());
+        l.log("CHEST CODE IS \n" + session.CHEST_CODE());
 
 
         //create Book items with all tags
-        for (int i = 0; (i < session.getBooks().size() && i < 26); i++) {
+        for (int i = 0; i < session.getBooks().size(); i++) {
             Book book = session.getBooks().get(i);
 
             //todo here's book item is built
             BibliocraftBookBuilder builder = new BibliocraftBookBuilder("1.0", book, i);
-            code.append(builder.build());
+
+            String bookItemCode = builder.build();
+            code.append(bookItemCode);
+            l.log("ITEM OUTPUT");
+            l.log(bookItemCode);
             if (i != session.getBooks().size() - 1) {
                 code.append(",");
             }
@@ -143,18 +156,41 @@ public class GenericBookBuilder {
     /**
      * Parses all files from the Session and turns them into raw books
      * It gets title, Description list, and raw content lists.
-     * todo It's planned that the Book is the default format for conversion to BiblioCraft
      * while the Book can be built from different sources
      *
      * @param bookReport a Book-String map to store parse results: failed to not. Pay attention that results are surrounded by ANCII color codes
      */
     private void parseBooksFromScritoriaFiles(Map<Book, String> bookReport) {
         for (File file : session.getFiles()) {
+
             String[] bookTags = {""};
             boolean tagFound = false;
+            boolean notReady = false;
 
             List<List<String>> buffer = new ArrayList<>();
             scanRawBooksIntoBuffer(file, buffer);
+
+            for (List<String> section : buffer) {
+                for (int i = 0; i < section.size(); i++) {
+                    String line = section.get(i);
+                    //check if the file is ready
+
+                    if (line.startsWith("Статус: ")) {
+                        String status = line.substring(8);
+                        l.log("Status is: " + status);
+                        if (!status.equals("Текст готов")) {
+                            notReady = true;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            if (notReady) {
+                l.log(RED + "Error! " + RESET + "File %s is not in \"ready\" status." + file.getName());
+                l.log("Proceeding to next file...");
+                continue;
+            }
 //            logBufferContent(buffer);
 
             for (List<String> section : buffer) {
@@ -166,15 +202,15 @@ public class GenericBookBuilder {
                 boolean iconFound = false;
 
 
+
                 for (int i = 0; i < section.size(); i++) {
                     String line = section.get(i);
-
 
                     //add tags from the book
                     if (!tagFound) { //todo empty list fail-over
                         if (line.startsWith("Темы и тэги:")) {
                             String tags = line.substring(13);
-//                            l.log("Tags string is: " + tags);
+                            l.log("Tags string is: " + tags);
                             tags = Functions.filterStringFrom(tags, ',');
 //                            l.log("Comma-less: " + tags);
                             bookTags = tags.split(" ");
@@ -282,7 +318,7 @@ public class GenericBookBuilder {
             if (Pattern.compile("^```").matcher(luaLine).lookingAt()) {
                 l.log(YELLOW + "Valid icon line found: " + RESET + contentLine);
                 if (contentLine.equals("")) {
-                   return  false;
+                    return false;
                 } else {
                     book.setIcon(Integer.parseInt(contentLine));
                     return true;
@@ -293,26 +329,26 @@ public class GenericBookBuilder {
     }
 
     private boolean isAuthorFound(List<String> section, Book book, int i, String line) {
-         //todo length (65 checking)
-            if (Pattern.compile("\\*\\*Автор \\(").matcher(line).find()) {
-                l.log("Author section is found: " + line);
+        //todo length (65 checking)
+        if (Pattern.compile("\\*\\*Автор \\(").matcher(line).find()) {
+            l.log("Author section is found: " + line);
 
-                String luaLine = section.get(i + 2);
-                String contentLine = section.get(i + 3);
-                l.log("lua is " + luaLine);
-                l.log("first author line is: " + contentLine);
+            String luaLine = section.get(i + 2);
+            String contentLine = section.get(i + 3);
+            l.log("lua is " + luaLine);
+            l.log("first author line is: " + contentLine);
 
-                if (Pattern.compile("^```").matcher(luaLine).lookingAt()) {
-                    l.log(YELLOW + "Valid author line found: " + RESET + contentLine);
-                    if (contentLine.equals("")) {
-                        book.setAuthor(NO_AUTHOR);
-                        return false;
-                    } else {
-                        book.setAuthor(contentLine);
-                        return true;
-                    }
+            if (Pattern.compile("^```").matcher(luaLine).lookingAt()) {
+                l.log(YELLOW + "Valid author line found: " + RESET + contentLine);
+                if (contentLine.equals("")) {
+                    book.setAuthor(NO_AUTHOR);
+                    return false;
+                } else {
+                    book.setAuthor(contentLine);
+                    return true;
                 }
             }
+        }
         return false;
     }
 
@@ -504,7 +540,7 @@ public class GenericBookBuilder {
             }
             currentPart.add(line);
             lineIndex++;
-            l.log("Added line: \"" + line + "\"");
+//            l.log("Added line: \"" + line + "\"");
         }
     }
 
