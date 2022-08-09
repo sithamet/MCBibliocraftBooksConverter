@@ -52,7 +52,7 @@ public class Main {
 
         getSessionFiles(INPUT);
 
-        BookBuilder builder = new BookBuilder(session);
+        GenericBookBuilder builder = new GenericBookBuilder(session);
 
         builder.buildBooks();
 

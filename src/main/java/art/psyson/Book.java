@@ -9,6 +9,27 @@ public class Book {
     final public UUID ID;
     private String author;
 
+    private Integer icon;
+
+    public Integer getIcon() {
+        return icon;
+    }
+
+    public void setIcon(int icon) {
+        this.icon = icon;
+    }
+
+    public String[] getTags() {
+        return tags;
+    }
+
+    public void setTags(String[] tags) {
+        this.tags = tags;
+    }
+
+    private String[] tags;
+
+
     public void setContent(List<String> content) {
         this.content = content;
     }

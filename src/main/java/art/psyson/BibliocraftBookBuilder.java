@@ -64,7 +64,11 @@ public class BibliocraftBookBuilder {
         if (book.author() == null) {
             builder.append("author: \"Издательство Скрипторес\",\n");
         } else {
-            builder.append(book.author() + ",\n");
+            builder.append("author: \"" + book.author() + "\",\n");
+        }
+
+        if (book.getIcon() != null) {
+            builder.append("texture: " + book.getIcon() + ",\n");
         }
 
         builder.append("signed: 1,\n");

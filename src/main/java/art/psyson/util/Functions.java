@@ -49,6 +49,19 @@ public class Functions {
         }
     }
 
+    public static String filterStringFrom(String string, char c) {
+        StringBuilder builder = new StringBuilder();
+
+            for (int i = 0; i < string.length(); i++) {
+                if (!(string.charAt(i) == c)) {
+                    builder.append(string.charAt(i));
+                }
+            }
+
+        return builder.toString();
+
+    }
+
     public static String toUtfString(String s) {
         byte[] bytes = s.getBytes(StandardCharsets.UTF_8);
         return new String(bytes, StandardCharsets.UTF_8);
