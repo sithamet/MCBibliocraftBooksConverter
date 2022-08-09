@@ -3,7 +3,6 @@ package art.psyson;
 import art.psyson.util.FileTool;
 import art.psyson.util.Functions;
 import art.psyson.util.Logger;
-import org.checkerframework.checker.units.qual.A;
 
 import java.io.File;
 import java.io.FileNotFoundException;

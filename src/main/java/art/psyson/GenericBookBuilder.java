@@ -185,48 +185,13 @@ public class GenericBookBuilder {
 
 
                     //find author
-                    if (!authorFound) { //todo length (65 checking)
-                        if (Pattern.compile("\\*\\*Автор \\(").matcher(line).find()) {
-                            l.log("Author section is found: " + line);
-
-                            String luaLine = section.get(i + 2);
-                            String contentLine = section.get(i + 3);
-                            l.log("lua is " + luaLine);
-                            l.log("first author line is: " + contentLine);
-
-                            if (Pattern.compile("^```").matcher(luaLine).lookingAt()) {
-                                l.log(YELLOW + "Valid author line found: " + RESET + contentLine);
-                                if (contentLine.equals("")) {
-                                    authorFound = false;
-                                    book.setAuthor(NO_AUTHOR);
-                                } else {
-                                    authorFound = true;
-                                    book.setAuthor(contentLine);
-                                }
-                            }
-                        }
+                    if (!authorFound) {
+                        authorFound = isAuthorFound(section, book, i, line);
                     }
 
                     //find icon
                     if (!iconFound) {
-                        if (Pattern.compile("\\*\\*Номер иконки ").matcher(line).find()) {
-                            l.log("Author section is found: " + line);
-
-                            String luaLine = section.get(i + 2);
-                            String contentLine = section.get(i + 3);
-                            l.log("lua is " + luaLine);
-                            l.log("first author line is: " + contentLine);
-
-                            if (Pattern.compile("^```").matcher(luaLine).lookingAt()) {
-                                l.log(YELLOW + "Valid icon line found: " + RESET + contentLine);
-                                if (contentLine.equals("")) {
-                                    iconFound = false;
-                                } else {
-                                    iconFound = true;
-                                    book.setIcon(Integer.parseInt(contentLine));
-                                }
-                            }
-                        }
+                        iconFound = isIconFound(section, book, i, line);
                     }
 
 
@@ -303,6 +268,52 @@ public class GenericBookBuilder {
 
 
         }
+    }
+
+    private boolean isIconFound(List<String> section, Book book, int i, String line) {
+        if (Pattern.compile("\\*\\*Номер иконки ").matcher(line).find()) {
+            l.log("Author section is found: " + line);
+
+            String luaLine = section.get(i + 2);
+            String contentLine = section.get(i + 3);
+            l.log("lua is " + luaLine);
+            l.log("first author line is: " + contentLine);
+
+            if (Pattern.compile("^```").matcher(luaLine).lookingAt()) {
+                l.log(YELLOW + "Valid icon line found: " + RESET + contentLine);
+                if (contentLine.equals("")) {
+                   return  false;
+                } else {
+                    book.setIcon(Integer.parseInt(contentLine));
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private boolean isAuthorFound(List<String> section, Book book, int i, String line) {
+         //todo length (65 checking)
+            if (Pattern.compile("\\*\\*Автор \\(").matcher(line).find()) {
+                l.log("Author section is found: " + line);
+
+                String luaLine = section.get(i + 2);
+                String contentLine = section.get(i + 3);
+                l.log("lua is " + luaLine);
+                l.log("first author line is: " + contentLine);
+
+                if (Pattern.compile("^```").matcher(luaLine).lookingAt()) {
+                    l.log(YELLOW + "Valid author line found: " + RESET + contentLine);
+                    if (contentLine.equals("")) {
+                        book.setAuthor(NO_AUTHOR);
+                        return false;
+                    } else {
+                        book.setAuthor(contentLine);
+                        return true;
+                    }
+                }
+            }
+        return false;
     }
 
     /**
