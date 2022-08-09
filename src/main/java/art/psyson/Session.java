@@ -35,18 +35,59 @@ public class Session {
     private List<Book> books;
     private List<File> files;
 
+    public int getChestCoordinateX() {
+        return chestCoordinateX;
+    }
+
+    public void setChestCoordinateX(int chestCoordinateX) {
+        this.chestCoordinateX = chestCoordinateX;
+    }
+
+    public int getChestCoordinateY() {
+        return chestCoordinateY;
+    }
+
+    public void setChestCoordinateY(int chestCoordinateY) {
+        this.chestCoordinateY = chestCoordinateY;
+    }
+
+    public int getChestCoordinateZ() {
+        return chestCoordinateZ;
+    }
+
+    public void setChestCoordinateZ(int chestCoordinateZ) {
+        this.chestCoordinateZ = chestCoordinateZ;
+    }
+
+    Integer chestCoordinateX;
+    Integer chestCoordinateY;
+    Integer chestCoordinateZ;
+
+
     private Logger l;
 
 
     public String getChestCode() {
-        return chestCode;
+        if (chestCoordinateX == null || chestCoordinateY == null || chestCoordinateZ == null) {
+            return null;
+        } else {
+            return String.format(chestCode, chestCoordinateX, chestCoordinateY, chestCoordinateZ);
+        }
     }
 
-    public void setChestCode(String chestCode) {
-        this.chestCode = chestCode;
-    }
-
-    String chestCode;
+    final String chestCode = "{\n x:%d,\n" +
+            "  y:%d,\n" +
+            "  id:\"minecraft:chest\",\n" +
+            "  z:%d,\n" +
+            "  Lock:\"\",\n" +
+            "  ForgeCaps:{\n" +
+            "    \"misca:lock\": {\n" +
+            "      secret:0,locked:0b,type:0b\n" +
+            "    },\n" +
+            "    \"misca:supplies\":{\n" +
+            "      Last:0L,Price:1,MaxSeq:0,Batches:[],Int:1L}\n" +
+            "  },\n" +
+            "  Items:[";
 
     public Session(String sessionTimeStamp) {
         this.sessionTimeStamp = sessionTimeStamp;

@@ -8,7 +8,16 @@ public class Book {
 
     final public UUID ID;
     private String author;
-    private final List<String> description;
+
+    public void setContent(List<String> content) {
+        this.content = content;
+    }
+
+    public void setDescription(List<String> description) {
+        this.description = description;
+    }
+
+    private  List<String> description;
     private List<String> content;
     private final String bookCode;
 

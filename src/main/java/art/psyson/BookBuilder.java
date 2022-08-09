@@ -1,5 +1,6 @@
 package art.psyson;
 
+import art.psyson.util.FileTool;
 import art.psyson.util.Functions;
 import art.psyson.util.Logger;
 
@@ -9,6 +10,8 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static art.psyson.Main.OUTPUT;
+import static art.psyson.Main.SEP;
 import static art.psyson.util.CODES.*;
 import static art.psyson.util.Functions.getLength;
 
@@ -37,16 +40,54 @@ public class BookBuilder {
 
         removeInvalidBooksFromBuild(bookReport);
 
-        convertMarkdownToMinecraft(session.getBooks());
+        l.log("AFTER INVALID REMOVAL");
 
-
-        for (Book book : session.getBooks()) {
-
-            BibliocraftBookBuilder builder = new BibliocraftBookBuilder("1.0", book);
-            String bibliocraftNBTTag = builder.build();
+        for (Book b : session.getBooks()) {
+            l.log(String.valueOf(b.ID));
         }
 
+        if (session.getBooks().size() == 0) {
+            return;
+        }
 
+        convertMarkdownToMinecraft(session.getBooks());
+
+        // todo here starts building the chest file
+        StringBuilder code = new StringBuilder();
+
+        code.append(session.getChestCode());
+        l.log("CHEST CODE IS \n" + session.getChestCode());
+
+
+        //create Book items with all tags
+        for (int i = 0; (i < session.getBooks().size() && i < 26); i++) {
+            Book book = session.getBooks().get(i);
+
+            //todo here's book item is built
+            BibliocraftBookBuilder builder = new BibliocraftBookBuilder("1.0", book, i);
+            code.append(builder.build());
+            if (i != session.getBooks().size()-1) {
+                code.append(",");
+            }
+            code.append("\n");
+        }
+
+        code.append("]\n"); //close Ttems array inside the Chest
+        code.append("}"); //close the Chest
+
+
+        String path = OUTPUT + SEP + session.getSessionTimeStamp() + "books.txt";
+        FileTool.createNewFile(path);
+                PrintWriter writer = null;
+
+        try {
+            writer = new PrintWriter(path);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+        writer.println(code.toString());
+        writer.close();
     }
 
     private void convertMarkdownToMinecraft(List<Book> books) {
@@ -68,9 +109,32 @@ public class BookBuilder {
                 pattern = Pattern.compile("~~");
                 line = Functions.replacePairPatternWith(line, pattern, "§m", "§r");
 
+                //replace quotes
+                pattern = Pattern.compile("\"");
+                line = Functions.replacePairPatternWith(line, pattern, "«", "»");
+
+                //replace quotes in title & description
+                pattern = Pattern.compile("\"");
+                book.setTitle(Functions.replacePairPatternWith(book.Title(), pattern, "«", "»"));
+
+                List<String> newDescription = new ArrayList<>();
+                for (String s : book.description()) {
+                    newDescription.add(Functions.replacePairPatternWith(s, pattern, "«", "»"));
+                }
+                book.setDescription(newDescription);
+
                 book.content().set(i, line);
 //                l.log(book.content().get(i));
             }
+
+            for (int i = 0; i < book.description().size(); i++) {
+                String s = book.description().get(i).replaceAll("&", "§");
+                book.description().set(i, s);
+            }
+
+            book.setTitle(book.Title().replaceAll("&", "§"));
+
+
             l.log(GREEN + "Book converted" + RESET);
         }
     }
@@ -85,6 +149,8 @@ public class BookBuilder {
      */
     private void parseBooksFromScritoriaFiles(Map<Book, String> bookReport) {
         for (File file : session.getFiles()) {
+            int bookIcon;
+            List<String> bookTags;
 
             List<List<String>> buffer = new ArrayList<>();
             scanRawBooksIntoBuffer(file, buffer);
@@ -99,6 +165,9 @@ public class BookBuilder {
 
                 for (int i = 0; i < section.size(); i++) {
                     String line = section.get(i);
+
+
+
 
                     //search for title
                     if (!titleFound) {
@@ -120,13 +189,19 @@ public class BookBuilder {
                     if (Pattern.compile("^### \\[").matcher(line).find() && !contentFound) {
                         l.log("Content section is found: " + line);
 
-                        String contentLine = section.get(i + 2);
-                        l.log("Content's 1st line is " + contentLine);
-                        for (int k = i + 2; k < section.size(); k++) {
-                            book.content().add(section.get(k));
+                        String contentLine = "";
+                        try {
+                             contentLine = section.get(i + 2);
+                            l.log("Content's 1st line is " + contentLine);
+                            for (int k = i + 2; k < section.size(); k++) {
+                                book.content().add(section.get(k));
+                            }
+                            l.log("Book content is loaded; ");
+                            contentFound = true;
+                        } catch (IndexOutOfBoundsException e) {
+                            contentFound = false;
                         }
-                        l.log("Book content is loaded; ");
-                        contentFound = true;
+
                     }
 
 
@@ -139,10 +214,10 @@ public class BookBuilder {
                 if (titleFound && descriptionFound && contentFound) {
                     session.getBooks().add(book);
                     System.out.println(YELLOW + "Book + \"" + book.getPrettyTitle() + "\" is done" + RESET);
-                    bookReport.put(book, GREEN + "done" + RESET);
+                    bookReport.put(book, "done");
                 } else {
                     System.out.println(RED + "Error: Building of this book failed." + RESET);
-                    bookReport.put(book, RED + "failed" + RESET);
+                    bookReport.put(book, "failed");
                 }
             }
 
@@ -158,9 +233,11 @@ public class BookBuilder {
     private void removeInvalidBooksFromBuild(Map<Book, String> bookReport) {
         l.log(GREEN + "Logging resulting books..." + RESET);
         List<Book> newBooks = new ArrayList<>();
+
+
         for (Book book : session.getBooks()) {
             l.log(book.getPrettyTitle() + " " + bookReport.get(book));
-            if (!bookReport.get(book).equals(RED + "failed" + RESET)) {
+            if (!bookReport.get(book).equals("failed")) {
                 newBooks.add(book);
             }
         }
@@ -257,6 +334,9 @@ public class BookBuilder {
                 System.out.println(RED + "Error! in file " + file.getName() + RESET + "\nTitle is longer than allowed 35 char, length ="
                         + length + "\n Title: " + RED + contentLine + RESET);
                 return false;
+            } else if (length <= 3) {
+                System.out.println(RED + "Error! in file " + file.getName() + RESET + "\nTitle is empty!");
+                return  false;
             }
 
 
