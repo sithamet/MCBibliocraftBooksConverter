@@ -63,46 +63,118 @@ public class GenericBookBuilder {
         convertMarkdownToMinecraft(session.getBooks());
 
         // todo here starts building the chest file
-        StringBuilder code = new StringBuilder();
-
-        code.append(session.CHEST_CODE());
-        l.log("CHEST CODE IS \n" + session.CHEST_CODE());
 
 
-        //create Book items with all tags
-        for (int i = 0; i < session.getBooks().size(); i++) {
-            Book book = session.getBooks().get(i);
+        //todo Fix that deamonic shitcode and replace with a configurator instead
+       BookCollection questBooks = new BookCollection("questBooks");
+       BookCollection deepLoreBooks = new BookCollection("deepLoreBooks");
+       BookCollection morhileBooks = new BookCollection("morhileBooks");
+       BookCollection mechanBooks = new BookCollection("mechanBooks");
+       BookCollection p5 = new BookCollection("p5");
+       BookCollection defaultCollection = new BookCollection("defaultCollection");
 
-            //todo here's book item is built
-            BibliocraftBookBuilder builder = new BibliocraftBookBuilder("1.0", book, i);
-
-            String bookItemCode = builder.build();
-            code.append(bookItemCode);
-            l.log("ITEM OUTPUT");
-            l.log(bookItemCode);
-            if (i != session.getBooks().size() - 1) {
-                code.append(",");
+        for (Book b : session.getBooks()) {
+            if (Arrays.asList(b.getTags()).contains("ивент")) {
+                questBooks.addBook(b);
             }
-            code.append("\n");
+            if (Arrays.asList(b.getTags()).contains("диплор")) {
+                deepLoreBooks.addBook(b);
+            }
+            if (Arrays.asList(b.getTags()).contains("морхиль")) {
+                morhileBooks.addBook(b);
+            }
+            if (Arrays.asList(b.getTags()).contains("механики")) {
+                mechanBooks.addBook(b);
+            }
+            if (Arrays.asList(b.getTags()).contains("ПпПППпП")) {
+                p5.addBook(b);
+            }
+            defaultCollection.addBook(b);
         }
 
-        code.append("]\n"); //close Ttems array inside the Chest
-        code.append("}"); //close the Chest
+        ArrayList<BookCollection> collections = new ArrayList<>();
+
+        collections.add(questBooks);
+        collections.add(deepLoreBooks);
+        collections.add(morhileBooks);
+        collections.add(mechanBooks);
+        collections.add(p5);
+        collections.add(defaultCollection);
 
 
-        String path = OUTPUT + SEP + session.getSessionTimeStamp() + "books.txt";
-        FileTool.createNewFile(path);
-        PrintWriter writer = null;
-
-        try {
-            writer = new PrintWriter(path);
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
+        for (BookCollection collection : collections) {
+            compileBooks(collection);
         }
 
-        writer.println(code.toString());
-        writer.close();
     }
+
+    private void  compileBooks (BookCollection collection) {
+
+        ArrayList<Book> books = collection.books;
+
+        int partitionSize = session.getPartitionSize();
+
+        String collectionFolder = OUTPUT + SEP + session.getSessionTimeStamp() + SEP + collection.title;
+        File collectionFile = new File(collectionFolder);
+        collectionFile.mkdirs();
+
+        //StackOverFlow copypaste to divite the list into partitions of 5 books (to ease the upload to the game)
+        ArrayList<List<Book>> partitions = new ArrayList<>();
+        for (int i = 0; i < books.size(); i += partitionSize) {
+            partitions.add(books.subList(i, Math.min(i + partitionSize, books.size())));
+        }
+
+        //for each books partition
+        for (int i = 0; i < partitions.size(); i++) {
+            List<Book> bookList = partitions.get(i);
+
+            StringBuilder code = new StringBuilder();
+
+            code.append(session.CHEST_CODE());
+            l.log("CHEST CODE IS \n" + session.CHEST_CODE());
+
+            //for each book
+            for (int j = 0; j < bookList.size(); j++) {
+                Book book = bookList.get(j);
+                //here's where book item String with all the content is built
+                BibliocraftBookBuilder builder = new BibliocraftBookBuilder("1.0", book, j);
+                String bookItemCode = builder.build();
+
+                //adding item to chest
+                code.append(bookItemCode);
+                if (j != bookList.size() - 1) {
+                    code.append(",");
+                }
+                code.append("\n");
+            }
+
+            code.append("]\n"); //close Ttems array inside the Chest
+            code.append("}"); //close the Chest
+
+
+            //writing the collection's partition to the file
+            String path = collectionFolder + SEP + "part" + i;
+            FileTool.createNewFile(path);
+
+            PrintWriter writer = null;
+
+
+            try {
+                writer = new PrintWriter(path);
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+
+            writer.println(code.toString());
+            writer.close();
+
+        }
+
+
+    }
+
+
+
 
     private void convertMarkdownToMinecraft(List<Book> books) {
         l.log(YELLOW + "Translating Markdown into Minecraft codes..." + RESET);

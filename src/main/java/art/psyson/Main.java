@@ -257,7 +257,7 @@ public class Main {
         String pattern = "dd-MM-yyyy HH.mm.ss";
         String time = new SimpleDateFormat(pattern).format(date);
 
-        session = new Session(time);
+        session = new Session(time, 10);
         l.log("Session path is %s", session.getTempSessionPath());
     }
 

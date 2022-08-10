@@ -39,6 +39,12 @@ public class Session {
     private final List<Book> books;
     private final List<File> files;
 
+    private final int partitionSize;
+
+    public int getPartitionSize() {
+        return  partitionSize;
+    }
+
     public final HashMap<String, String> CATEGORIES;
 
     public int getChestCoordinateX() {
@@ -95,7 +101,8 @@ public class Session {
             "  },\n" +
             "  Items:[";
 
-    public Session(String sessionTimeStamp) {
+    public Session(String sessionTimeStamp, int partitionSize) {
+        this.partitionSize = partitionSize;
         CATEGORIES = new HashMap<>();
         initCategories();
         this.sessionTimeStamp = sessionTimeStamp;
